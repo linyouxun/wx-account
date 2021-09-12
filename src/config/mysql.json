@@ -1,0 +1,8 @@
+{
+    "connectionLimit": 10,
+    "host": "sh-cynosdbmysql-grp-0wlm3g0k.sql.tencentcdb.com",
+    "user": "test",
+    "port": 20798,
+    "password": "123456lyx!",
+    "database": "db_bookkeeping"
+}

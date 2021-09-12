@@ -1,8 +1,12 @@
 const express = require("express");
-const router = require("./router");
+const accountRouter = require("./route/Account");
+const expensesRouter = require("./route/Expenses");
 const app = express();
 
-app.use("/api", router);
+// app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use("/api", accountRouter);
+app.use("/api", expensesRouter);
 
 // app.get("/", (req, res) => {
 //   console.log("Hello world received a request.");
