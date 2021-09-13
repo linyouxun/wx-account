@@ -47,9 +47,10 @@ router.post("/expenses/update", function (req, res, next) {
     type = "",
     useTime = new Date(),
     id = "",
+    money,
     remark = "",
   } = req.body;
-  const params = { useTime, remark };
+  const params = { useTime, remark, money };
   if (accountId) {
     params["accountId"] = accountId;
   }
