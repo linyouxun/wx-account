@@ -1,10 +1,12 @@
 const express = require("express");
+const router = require("./route/index");
 const accountRouter = require("./route/Account");
 const expensesRouter = require("./route/Expenses");
 const app = express();
 
 // app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use("/", router);
 app.use("/api", accountRouter);
 app.use("/api", expensesRouter);
 

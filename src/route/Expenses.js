@@ -15,8 +15,14 @@ router.post("/expenses/list", function (req, res, next) {
 });
 
 router.post("/expenses/add", function (req, res, next) {
-  const { accountId = "", type = "", useTime = new Date() } = req.body;
-  const params = { accountId, type, useTime };
+  const {
+    accountId = "",
+    type = "",
+    useTime = new Date(),
+    money = 0,
+    remark = "",
+  } = req.body;
+  const params = { accountId, type, useTime, remark, money };
   db.queryArgs(sql.insert(params), Object.values(params), function (err, rows) {
     if (err) {
       console.log(err);
@@ -36,13 +42,19 @@ router.post("/expenses/add", function (req, res, next) {
 });
 
 router.post("/expenses/update", function (req, res, next) {
-  const { accountId = "", type = "", useTime = new Date(), id = "" } = req.body;
-  const params = { useTime };
+  const {
+    accountId = "",
+    type = "",
+    useTime = new Date(),
+    id = "",
+    remark = "",
+  } = req.body;
+  const params = { useTime, remark };
   if (accountId) {
-    params[accountId] = accountId;
+    params["accountId"] = accountId;
   }
   if (type) {
-    params[accountId] = type;
+    params["type"] = type;
   }
   if (!id) {
     res.send({ code: 400, msg: "id未填写" });

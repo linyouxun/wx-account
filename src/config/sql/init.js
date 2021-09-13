@@ -29,6 +29,7 @@ function update(tableName, params = {}, where = {}) {
   if (Object.keys(where).length > 0) {
     whereStr = "WHERE " + toSqlString(where);
   }
+
   return `UPDATE  ${tableName} ${set || ""} ${whereStr || ""}`;
 }
 
