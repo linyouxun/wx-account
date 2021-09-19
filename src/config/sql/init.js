@@ -12,12 +12,14 @@ function insert(tableName, params = {}) {
     .join(", ")})`;
 }
 
-function query(tableName, params = {}) {
+function query(tableName, params = {}, order = "DESC") {
   var extra = "";
   if (Object.keys(params).length > 0) {
     extra = "where " + toSqlString(params);
   }
-  return `SELECT * FROM ${tableName} ${extra || ""}`;
+  return `SELECT * FROM ${tableName} ${
+    extra || ""
+  } ORDER BY createTime ${order}`;
 }
 
 function update(tableName, params = {}, where = {}) {

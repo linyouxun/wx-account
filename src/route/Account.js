@@ -4,6 +4,24 @@ var router = express.Router();
 var db = require("../config/db"); //引入db
 var sql = require("../config/sql/account");
 
+router.post("/account/info", function (req, res, next) {
+  const { openid } = req.body;
+  db.queryArgs(sql.query({ openid }), [openid], function (err, rows) {
+    if (err) {
+      res.send({ code: 400, msg: "未知错误", data: {} });
+    }
+    if (rows.length > 0) {
+      res.send({ code: 200, data: rows[0] });
+    } else {
+      res.send({
+        code: 400,
+        msg: "未绑定openid,请切换到我的页面进行绑定",
+        data: {},
+      });
+    }
+  });
+});
+
 router.post("/account/list", function (req, res, next) {
   db.query(sql.query(), function (err, rows) {
     if (err) {
